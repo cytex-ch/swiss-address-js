@@ -105,7 +105,7 @@ yarn add swiss-address-js
 import AddressService from 'swiss-address-js';
 
 // Create a new instance
-const {swissPostOpenData, addresses} = new AddressService("your-username', 'your-password');
+const {swissPostOpenData, addresses} = new AddressService('your-username', 'your-password');
 
 // Find street names by postal code
 swissPostOpenData.getStreetNamesByPostalCode('9436');
