@@ -111,7 +111,7 @@ const addresses = new AddressWebServices({
 });
 
 // Search for zip codes
-const zipCodes = await swiss-address-js.findTownNameByZipCode('8000')
+const zipCodes = await addresses.findTownNameByZipCode('8000')
 
 // Search for street names beginning with 'A'
 const streetNames = await addresses.findStreetsByTown('A', '8000', 'Zürich')
