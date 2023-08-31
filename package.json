@@ -2,11 +2,9 @@
   "name": "swiss-address-js",
   "displayName": "@cytex/swiss-address-js",
   "version": "0.0.1",
-  "description": "swiss-address-js API Wrapper for NodeJS",
+  "description": "Allows querying for 🇨🇭 addresses using Swiss Post data",
   "keywords": [
     "swiss-address-js",
-    "epost.ch",
-    "epost",
     "swiss-post",
     "api",
     "typescript",

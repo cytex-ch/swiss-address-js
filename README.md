@@ -1,18 +1,18 @@
 <h2 align="center">swiss-address-js</h3>
 <p align="center">
-    Retrieve and manage your ePost/swiss-address-js snail mail with ease.
+Allows to query for 🇨🇭 addresses with ease.
 </p>
 
 <br/>
 
 <div align="center">
 
-[![Build, Lint and Test](https://github.com/cytex-media-solutions/swiss-address-js/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/cytex-media-solutions/swiss-address-js/actions/workflows/build-and-test.yml)
+[![Build, Lint and Test](https://github.com/cytex-ch/swiss-address-js/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/cytex-ch/swiss-address-js/actions/workflows/build-and-test.yml)
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub issues](https://img.shields.io/github/issues/cytex-media-solutions/swiss-address-js)]()
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/cytex-media-solutions/swiss-address-js)]()
+[![GitHub issues](https://img.shields.io/github/issues/cytex-ch/swiss-address-js)]()
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/cytex-ch/swiss-address-js)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-[![codecov](https://codecov.io/gh/cytex-media-solutions/swiss-address-js/graph/badge.svg?token=P7TXWCFFB5)](https://codecov.io/gh/cytex-media-solutions/swiss-address-js)
+[![codecov](https://codecov.io/gh/cytex-ch/swiss-address-js/graph/badge.svg?token=P7TXWCFFB5)](https://codecov.io/gh/cytex-ch/swiss-address-js)
 
 </div>
 
@@ -42,11 +42,11 @@
 
 <a name="about"></a>
 
-<strong>swiss-address-js</strong> allows you to easily fetch physical snail mail from your ePost/Swiss-address-js account. Additionally, you can also manage your snail mail by creating, updating and deleting it.
+<strong>swiss-address-js</strong> is a JavaScript library that allows you to query for swiss addresses with ease. It uses the API of Swiss Post fetch latest building addresses. It is written in TypeScript and can be used in any JavaScript environment.
 
 ### ⚠️ Disclaimer
 
-This project is not affiliated with Swiss Post or Swiss-address-js in any way. It is an unofficial API wrapper for the Swiss-address-js API. Use at your own risk. We are not responsible for any damage caused by the use of this library.
+This project is not affiliated with Swiss Post. It is an unofficial API wrapper for the [Address Webservices API](https://developer.post.ch/en/address-web-services-rest). Use at your own risk. We are not responsible for any damage caused by the use of this library.
 
 ## 🏁 Features
 
@@ -71,12 +71,13 @@ Please make sure you have installed the following tools:
 
 - [Node.js](https://nodejs.org/en/) - JavaScript runtime environment
 - [TypeScript](https://www.typescriptlang.org/) - Typescript compiler
-- A [epost.ch](https://www.epost.ch) account whose address is verified and has enabled Scanning Services.
 
 And a package manager of your choice:
 
 - [npm](https://www.npmjs.com/) - Node.js package manager
 - [yarn](https://yarnpkg.com/) - Node.js package manager
+
+Next, you need to create a new account at [Swiss Post](https://developer.post.ch/en/address-web-services-rest) and request an API key for a technical user. You will need the username and password to use this library.
 
 ### Installing
 
@@ -101,30 +102,19 @@ yarn add swiss-address-js
 ### Basic usage
 
 ```typescript
-import Swiss-address-js from 'swiss-address-js';
+import AddressWebServices from 'swiss-address-js';
 
 // Create a new instance
-const swiss-address-js = new Swiss-address-js('username', 'password');
+const swiss-address-js = new AddressWebServices({
+    username: 'your-username',
+    password: 'your-password',
+});
 
-// Fetch tenants (optional, defaults to first tenant)
-const tenants = await swiss-address-js.user.tenants();
-swiss-address-js.use(tenants[0]);
+// Search for zip codes
+const zipCodes = await swiss-address-js.search(null, '8000');
 
-// Login
-await swiss-address-js.login();
-
-// Fetch all letters
-await swiss-address-js.letterbox.find();
-
-// Fetch a specific letter
-await swiss-address-js.letterbox.findOne("letter-id");
-
-// Remove a letter
-await swiss-address-js.letterbox.delete("letter-id");
-
-// Download a letter
-await swiss-address-js.letterbox.download("letter-id", "./letter.pdf");
-
+// Fetch a specific address
+const address = await swiss-address-js.fetch("Mustergasse 1", "8000", "Zürich");
 ```
 
 ## 🔧 Running the tests
@@ -150,5 +140,5 @@ npm run test
 
 <a name="authors"></a>
 
-- [@cytex-media-solutions](https://github.com/cytex-media-solutions) - Project author
+- [@cytex-ch](https://github.com/cytex-ch) - Project author
 - [@sjutz](https://github.com/sjutz) - Project maintainer <simon.jutz@cytex.ch>
