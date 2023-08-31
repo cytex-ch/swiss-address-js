@@ -22,6 +22,7 @@ export class AutoCompleteQuery {
   houseNumberAddition!: string | null;
   townName!: string | null;
 
+  // istanbul ignore next
   constructor(
     streetName: string | null = null,
     zipCode: string | null = null,
