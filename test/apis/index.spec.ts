@@ -24,4 +24,12 @@ describe('SwissPost', () => {
     expect(swisspost.user).toBeDefined();
     expect(swisspost.addresses).toBeDefined();
   });
+
+  it('should yield user and swissPostOpenData api', () => {
+    const swisspost = new SwissPost('username', 'password');
+    swisspost.init();
+
+    expect(swisspost.user).toBeDefined();
+    expect(swisspost.swissPostOpenData).toBeDefined();
+  });
 });

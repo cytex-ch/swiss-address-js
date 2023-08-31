@@ -1,5 +1,6 @@
 import 'dotenv/config';
 
+// istanbul ignore next
 if (
   !(
     process.env.SWISSPOST_ADDRESS_WEB_SERVICES_USERNAME &&

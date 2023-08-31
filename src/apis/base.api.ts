@@ -12,6 +12,12 @@ export class BaseApi {
   private static username: string;
   private static password: string;
 
+  /**
+   * Constructs a new BaseApi instance.
+   *
+   * @param {string} username - The username for the Digital Commerce API.
+   * @param {string} password - The password for the Digital Commerce API.
+   */
   constructor(username?: string, password?: string) {
     if (username && password) {
       BaseApi.username = username;
@@ -20,15 +26,19 @@ export class BaseApi {
   }
 
   /**
+   * Gets the authorization header for API requests.
+   *
    * @function getAuthorizationHeader
    * @description Returns the authorization header for API requests.
    * @returns {Object} The authorization header.
    */
   public getAuthorizationHeader(): {
-    auth: {
-      username: string;
-      password: string;
-    };
+    auth:
+      | {
+          username: string;
+          password: string;
+        }
+      | undefined;
   } {
     return {
       auth: {
@@ -39,6 +49,8 @@ export class BaseApi {
   }
 
   /**
+   * Constructs the complete URL for making requests.
+   *
    * @function url
    * @description Constructs the complete URL for making requests.
    * @param {string} path - The path of the API endpoint.
@@ -56,7 +68,7 @@ export class BaseApi {
       BaseApi.ADDRESS_WEBSERVICES_BASE_URL
     );
     Object.entries(queryParams).forEach(([key, value]) => {
-      url.searchParams.append(key, value as string);
+      url.searchParams.append(key, encodeURIComponent(value as string));
     });
     Object.entries(pathParams).forEach(([key, value]) => {
       url.pathname = url.pathname.replace(`:${key}`, value as string);
@@ -66,6 +78,8 @@ export class BaseApi {
   }
 
   /**
+   * Makes an API request.
+   *
    * @function fetch
    * @description Makes an API request.
    * @template Payload - The type of the request payload.
@@ -94,16 +108,14 @@ export class BaseApi {
     data?: Payload
   ): Promise<Result> {
     const auth = this.getAuthorizationHeader();
-
-    const params = queryParams;
+    const params = pathParams;
 
     /* istanbul ignore next */
     const paramsSerializer = (params: QueryParams) => {
       return Object.entries(params as {})
-        .map(([key, value]) => `${key}=${value}`)
+        .map(([key, value]) => `${key}=${encodeURIComponent(value as string)}`)
         .join('&');
     };
-
     const response = await axios
       .request<Payload, AxiosResponse<Result>>({
         url: `${this.url(path, queryParams, pathParams)}`,

@@ -17,11 +17,11 @@ describe('AddressWebservicesApi', () => {
 
   describe('request', () => {
     test('should be defined', () => {
-      expect(api.request).toBeDefined();
+      expect(api.autocompleteRequest).toBeDefined();
     });
 
     test('should return a response', async () => {
-      const response = await api.request(
+      const response = await api.autocompleteRequest(
         new AutoCompleteQuery('Bahnhofstrasse', null, null, null, 'Heerbrugg')
       );
 
@@ -72,30 +72,20 @@ describe('AddressWebservicesApi', () => {
     });
 
     it('should yield the proper town name for a given zip code', async () => {
-      await expect(api.findTownNameByZipCode('8000')).resolves.toBe('Zürich');
+      await expect(
+        api.findByPostalCode('8000').then(addresses => addresses[0].town)
+      ).resolves.toBe('Zürich');
     });
 
     it('should throw an error if no results are found', async () => {
-      await expect(api.findTownNameByZipCode('9999')).rejects.toThrow(
-        'No results found'
-      );
-    });
-
-    it('should throw an error if more than one result is found', async () => {
-      await expect(api.findTownNameByZipCode('800')).rejects.toThrow(
-        'More than one result found'
+      await expect(api.findByPostalCode('9999')).rejects.toThrow(
+        'Could not find any addresses for the given postal code (9999)'
       );
     });
 
     it('should yield the proper streets for a given zip code and town name', async () => {
-      let suggestions = await api.findStreetsByTown('A', '9435', 'Heerbrugg');
-      suggestions.forEach(suggestion => {
-        expect(suggestion).toMatch(/^A/);
-      });
-      suggestions = await api.findStreetsByTown('Kanonen', '8004');
-      suggestions.forEach(suggestion => {
-        expect(suggestion).toMatch(/^Kanonen/);
-      });
+      const suggestions = await api.findStreetsByTown('8004', 'Zürich', 'Kan');
+      expect(suggestions).toContain('Kanonengasse');
     });
 
     it('should throw an error if no results are found', async () => {
@@ -123,14 +113,14 @@ describe('AddressWebservicesApi', () => {
     });
 
     it('should yield the proper zip codes for a given town name', async () => {
-      const suggestions = await api.findZipCodesByTown('8', 'Zürich');
+      const suggestions = await api.findByTownName('Zürich');
       suggestions.forEach(suggestion => {
-        expect(suggestion).toMatch(/^8/);
+        expect(suggestion.postalCode).toMatch(/^8/);
       });
     });
 
     it('should throw an error if no results are found', async () => {
-      await expect(api.findZipCodesByTown('9999', 'Heerbrugg')).rejects.toThrow(
+      await expect(api.findByTownName('New York City')).rejects.toThrow(
         'No results found'
       );
     });
