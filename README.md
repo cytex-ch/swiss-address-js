@@ -40,9 +40,9 @@ Allows to query for 🇨🇭 addresses with ease.
 
 ## 🧐 About
 
-`<a name="about"></a>`
+<a name="about"></a>
 
-`<strong>`swiss-address-js`</strong>` is a JavaScript library that allows you to query for swiss addresses with ease. It uses the API of Swiss Post fetch latest building addresses. It is written in TypeScript and can be used in any JavaScript environment.
+<strong>swiss-address-js</strong> is a JavaScript library that allows you to query for swiss addresses with ease. It uses the API of Swiss Post fetch latest building addresses. It is written in TypeScript and can be used in any JavaScript environment.
 
 ### ⚠️ Disclaimer
 
@@ -50,7 +50,7 @@ This project is not affiliated with Swiss Post. It is an unofficial API wrapper 
 
 ## 🏁 Features
 
-`<a name="features"></a>`
+<a name="features"></a>
 
 - Search
 - Fetch
@@ -59,13 +59,13 @@ This project is not affiliated with Swiss Post. It is an unofficial API wrapper 
 
 ## 🏁 Getting Started
 
-`<a name="getting_started"></a>`
+<a name="getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-`<a name="prerequisites"></a>`
+<a name="prerequisites"></a>
 
 Please make sure you have installed the following tools:
 
@@ -81,7 +81,7 @@ Next, you need to create a new account at [Swiss Post](https://developer.post.ch
 
 ### Installing
 
-`<a name="installing"></a>`
+<a name="installing"></a>
 
 Install the package via npm:
 
@@ -97,7 +97,7 @@ yarn add swiss-address-js
 
 ## 🎈 Usage
 
-`<a name="usage"></a>`
+<a name="usage"></a>
 
 ### Basic usage
 
@@ -128,7 +128,7 @@ const buildingNumbers = await addresses.findBuildingNumbersByStreet('1', '80', '
 
 ## 🔧 Running the tests
 
-`<a name="tests"></a>`
+<a name="tests"></a>
 
 Tests are written with jest. You can run them with the following command:
 
@@ -138,7 +138,7 @@ npm run test
 
 ## ⛏️ Built Using
 
-`<a name="built_using"></a>`
+<a name="built_using"></a>
 
 - [TypeScript](https://www.typescriptlang.org/) - Programming language
 - [Jest](https://jestjs.io/) - Testing framework
@@ -147,7 +147,7 @@ npm run test
 
 ## ✍️ Authors
 
-`<a name="authors"></a>`
+<a name="authors"></a>
 
 - [@cytex-ch](https://github.com/cytex-ch) - Project author
 - [@sjutz](https://github.com/sjutz) - Project maintainer <simon.jutz@cytex.ch>
