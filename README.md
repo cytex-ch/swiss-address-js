@@ -102,13 +102,19 @@ yarn add swiss-address-js
 ### Basic usage
 
 ```typescript
-import AddressWebServices from 'swiss-address-js';
+import AddressService from 'swiss-address-js';
 
 // Create a new instance
-const addresses = new AddressWebServices({
-    username: 'your-username',
-    password: 'your-password',
-}); 
+const {swissPostOpenData, addresses} = new AddressService("your-username', 'your-password');
+
+// Find street names by postal code
+swissPostOpenData.getStreetNamesByPostalCode('9436');
+
+// Find street names by postal code and street name
+swissPostOpenData.getStreetByPostalCodeAndStreetName('9436','Kapfstrasse');
+
+// Find buildings by postal code and street name
+swissPostOpenData.getBuildingsByPostalCodeAndStreet('9435','Gutenbergstrasse');
 
 // Search for zip codes 
 const zipCodes = await addresses.findTownNameByZipCode('8000')
