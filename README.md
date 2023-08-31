@@ -105,16 +105,19 @@ yarn add swiss-address-js
 import AddressWebServices from 'swiss-address-js';
 
 // Create a new instance
-const swiss-address-js = new AddressWebServices({
+const addresses = new AddressWebServices({
     username: 'your-username',
     password: 'your-password',
 });
 
 // Search for zip codes
-const zipCodes = await swiss-address-js.search(null, '8000');
+const zipCodes = await swiss-address-js.findTownNameByZipCode('8000')
 
-// Fetch a specific address
-const address = await swiss-address-js.fetch("Mustergasse 1", "8000", "Zürich");
+// Search for street names beginning with 'A'
+const streetNames = await addresses.findStreetsByTown('A', '8000', 'Zürich')
+
+// Search for house numbers beginning with 1, in towns with zip code beginning with "80" and name "Zürich" lying in a street called "Alte Landstrasse"
+const buildingNumbers = await addresses.findBuildingNumbersByStreet('1', '80', 'Zürich', 'Alte Landstrasse')
 ```
 
 ## 🔧 Running the tests

@@ -1,7 +1,7 @@
 {
   "name": "swiss-address-js",
   "displayName": "@cytex/swiss-address-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Allows querying for 🇨🇭 addresses using Swiss Post data",
   "keywords": [
     "swiss-address-js",
