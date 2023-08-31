@@ -1,0 +1,10 @@
+import 'dotenv/config';
+
+if (!(process.env.SWISSPOST_CLIENT_ID && process.env.SWISSPOST_CLIENT_SECRET)) {
+  // istanbul ignore next
+  throw new Error('Missing environment variables');
+}
+const username = process.env.SWISSPOST_ADDRESS_WEB_SERVICES_USERNAME as string;
+const password = process.env.SWISSPOST_ADDRESS_WEB_SERVICES_PASSWORD as string;
+
+export {username, password};
