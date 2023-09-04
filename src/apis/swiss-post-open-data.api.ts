@@ -161,7 +161,7 @@ export class SwissPostOpenDataApi extends BaseApi {
       'GET'
     >('hausnummer-und-hauskey_v2', 'GET', {
       where: `strid="${street.onrp}"`,
-      limit: 2,
+      limit: 100,
     });
     return response.results.map(item => {
       return Object.assign(transformBuildingResultItem(item), street);
